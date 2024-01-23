@@ -1,6 +1,6 @@
-name: sample-flask
+name: arrestick
 services:
 - name: web
   github:
-    repo: digitalocean/sample-flask
+    repo: turugabor/flask_arrestick_app
     branch: main
