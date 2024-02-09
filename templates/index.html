@@ -3,23 +3,23 @@
 {% block content %}
 
 <div class="container-fluid justify-content-center">
-    <form class="w3-wide bg-primary" action="/select" method="post">
+    <form class="w3-wide bg-secondary" action="/select" method="post">
         <div class="container text-center">
             <div class="row p-2 justify-content-center">
-                <div class="col-6 d-flex flex-column align-items-center text-light">
+                <div class="col-md-6 d-flex flex-column align-items-center text-light">
                     <h3>arreSTick</h3>
                     <h5>arrestin-binding region prediction tool</h5>
                 </div>
             </div>
         
             <div class="row p-2 justify-content-center">
-                <div class="col-8">
+                <div class="col-md-8">
                     <textarea class="form-control" name="protein" id="protein" 
-                        placeholder="Enter Uniprot entry, entry name or raw protein amino acid sequence here" rows="5"></textarea>
+                        placeholder="Enter Uniprot entry, entry name or raw protein amino acid sequence here" rows="5" style="resize:vertical;"></textarea>
                 </div>
             </div>
             <div class="row p-2 justify-content-center">
-                <div class="col-2">
+                <div class="col-md-2">
                     <button type="submit" name="clicked_btn" class="btn btn-light">Convolute</button>
                 </div>
             </div>
@@ -28,7 +28,7 @@
     </form> 
 
     <div class="row p-2 justify-content-center">
-        <div class="col-8 container text-center">
+        <div class="col-md-8 container text-center">
             <div id="chart" class="chart"></div>
             <p>{{ message }}</p>
         </div>
@@ -38,5 +38,4 @@
 
 
 {% endblock content %}
-
 
