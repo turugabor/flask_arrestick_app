@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container text-light  text-center">
+    <p>A protein sequence can be convoluted either by entering its uniprot entry name or the sequence. In case the entry / entry name is given, the alphafold confidence score is downloaded from the alphafold.ebi.ac.uk site and displayed in the figure as a colored line. </p>
+    <p>In case a protein is not available on the alphafold.ebi.ac.uk (e.g. splice variant or mutated protein)), the sequence can be directly entered in the “Custom sequence convolution” section. In this case no structure confidence information will be displayed in the figure. </p>
+    <p>To predict proteins in batch, the source python code should be run locally. Please refer to our github pages: <a href="https://github.com/turugabor/arrestick_app">app</a>, <a href="https://github.com/turugabor/arreSTick">model</a></p>
+    
+</div>
+{% endblock content %}
+
+
+
+
+Help
+
+
+
+
+

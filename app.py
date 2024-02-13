@@ -81,3 +81,11 @@ def create_graph(protein):
         fig = plotter.plot(sequence, probability, confidence)  
         graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
         return graphJSON
+    
+@app.route('/about')
+def about():
+    return render_template("about.html", title="arreSTick")
+        
+@app.route('/help')
+def helpt():
+    return render_template("help.html", title="arreSTick")
