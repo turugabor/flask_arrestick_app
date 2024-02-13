@@ -90,7 +90,7 @@ class Convolution:
                 sequence, confidence = self.get_alphafold_data(self.entries[protein])
             else:
                 # check if protein is a valid amino acid sequence
-                if all(aa in self.aa_dict.keys() for aa in protein):
+                if all(aa in self.aa_dict.keys() for aa in protein) & (len(protein) >= 15):
                     sequence = protein
                     confidence = np.zeros(len(sequence))
                 else:
