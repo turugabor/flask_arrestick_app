@@ -57,6 +57,7 @@ class Convolution:
         regions = pd.DataFrame(regions, columns=["start", "end", "sequence", "prediction"])
         regions = regions.sort_values(by="prediction", ascending=False)
         regions = regions.round({"prediction": 2})
+
         return regions
         
     def get_probability(self, convoluted):

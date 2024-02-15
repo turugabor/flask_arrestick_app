@@ -35,7 +35,9 @@
             {% if message %}
             
             <div  class = "container bg-light justify-content-center mx-auto p-2" >
-                <p class="text-center">Regions predicted as possible arrestin-binding sequences (arreSTicks)</p>
+                {% if message != "Protein not found or sequence is not valid" %}
+                <p class="text-center bg-light justify-content-center mx-auto p-2">Regions predicted as possible arrestin-binding sequences (arreSTicks)</p>
+                {% endif %}
                 {{ message | safe }}
             </div>
             {% endif %}
