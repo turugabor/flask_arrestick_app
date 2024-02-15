@@ -99,22 +99,25 @@ class Convolution:
             if protein in self.entries.values():
                 entry = protein
                 sequence, confidence = self.get_alphafold_data(entry)
+                name = protein
             elif protein in self.entries.keys():
                 sequence, confidence = self.get_alphafold_data(self.entries[protein])
+                name = protein
             else:
                 # check if protein is a valid amino acid sequence
                 if all(aa in self.aa_dict.keys() for aa in protein) & (len(protein) >= 15):
                     sequence = protein
                     confidence = np.zeros(len(sequence))
+                    name = "Custom sequence"
                 else:
                     sequence = None
             
             if sequence is None:
-                return None, None, None
+                return None, None, None, None
             else:
                 convoluted = self.convolve(sequence)
                 probability = self.get_probability(convoluted)        
-                return sequence, probability, confidence
+                return sequence, probability, confidence, name
             
         except ValueError:
             return None, None, None

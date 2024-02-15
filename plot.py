@@ -9,7 +9,7 @@ class Plotter:
     def __init__(self):
         pass
 
-    def plot(self, seq, probability, confidence):
+    def plot(self, seq, probability, confidence, name):
         """
         Plot the arreSTick sequence probability.
 
@@ -22,7 +22,7 @@ class Plotter:
             plotly.graph_objects.Figure: The plotly figure.
         """
         data = self._prepare_data(seq, probability, confidence)
-        return self._plot(data)
+        return self._plot(data, name)
 
     def _prepare_data(self, seq, probability, confidence):
         """
@@ -48,7 +48,7 @@ class Plotter:
         
         return data
 
-    def _plot(self, data):
+    def _plot(self, data, name):
         """
         Plot the arreSTick sequence probability.
 
@@ -82,6 +82,9 @@ class Plotter:
             showscale=False,
             opacity=0.6
         )
+
+        
+        
         
         subfig.add_trace(trace1)
         subfig.add_traces(plot.data)
@@ -114,6 +117,6 @@ class Plotter:
             showarrow=False
         )
         
-        subfig.update_layout(paper_bgcolor='white', plot_bgcolor='white')
-        
+        subfig.update_layout(paper_bgcolor='white', plot_bgcolor='white', title=f"Protein sequence prediction of {name}")
+         
         return subfig

@@ -79,14 +79,14 @@ def select():
 def get_info(protein):
     """if the protein is found, get the sequence, probability, and confidence and return the graph and the arrestick regions"""
     protein = protein.upper().replace(" ", "").replace("\n", "").replace("\r", "")
-    sequence, probability, confidence = conv.get_arrestick_data(protein)
+    sequence, probability, confidence, name = conv.get_arrestick_data(protein)
 
     if sequence == None:
         session["message"] = "Protein not found"
         return None, None
 
     else:
-        fig = plotter.plot(sequence, probability, confidence)  
+        fig = plotter.plot(sequence, probability, confidence, name)  
         graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
         regions = conv.extract_arrestick_sequence_regions(sequence, probability)
         return graphJSON, regions
