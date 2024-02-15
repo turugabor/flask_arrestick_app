@@ -47,6 +47,18 @@ class Convolution:
         convoluted = np.convolve(seq_translated, self.kernel[::-1], mode='valid') + self.bias
         return convoluted
     
+    def extract_arrestick_sequence_regions(self, sequence, probability):
+        """Extract 15 amino acid long regions of the input sequence starting with high confidence values
+        Returns the regions, starting amino acid position, and the confidence value"""
+        regions = []
+        for i in range(len(probability)):
+            if probability[i] > 0.5:
+                regions.append([i+1, i+16, sequence[i:i+15], probability[i]])
+        regions = pd.DataFrame(regions, columns=["start", "end", "sequence", "prediction"])
+        regions = regions.sort_values(by="prediction", ascending=False)
+        regions = regions.round({"prediction": 2})
+        return regions
+        
     def get_probability(self, convoluted):
         return self.sigmoid(convoluted)
 

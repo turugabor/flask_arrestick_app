@@ -27,12 +27,21 @@
                            
     </form> 
 
+   
     <div class="row p-2 justify-content-center">
         <div class="col-md-8 container text-center">
             <div id="chart" class="chart"></div>
-            <p>{{ message }}</p>
+
+            {% if message %}
+            
+            <div  class = "container bg-light justify-content-center mx-auto p-2" >
+                <p class="text-center">Regions predicted as possible arrestin-binding sequences (arreSTicks)</p>
+                {{ message | safe }}
+            </div>
+            {% endif %}
         </div>
     </div>
+
 
 </div>
 

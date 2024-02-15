@@ -44,8 +44,15 @@ def home():
         protein = session['protein']
         app.logger.info(f"protein: {protein}")
 
-        graphJSON = create_graph(protein)
+        graphJSON, regions = get_info(protein)
         message = ''
+
+        # format the regions pandas dataframe for display as HTML
+        if regions is not None:
+            message = regions.to_html(index=False, justify='center')
+
+        else:
+            message = "No arreSTick regions found"
 
         if graphJSON != None:
             return render_template("index.html",
@@ -69,18 +76,20 @@ def select():
 
         return redirect(url_for('home'), code=302)
     
-def create_graph(protein):
+def get_info(protein):
+    """if the protein is found, get the sequence, probability, and confidence and return the graph and the arrestick regions"""
     protein = protein.upper().replace(" ", "").replace("\n", "").replace("\r", "")
     sequence, probability, confidence = conv.get_arrestick_data(protein)
 
     if sequence == None:
         session["message"] = "Protein not found"
-        return None
+        return None, None
 
     else:
         fig = plotter.plot(sequence, probability, confidence)  
         graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-        return graphJSON
+        regions = conv.extract_arrestick_sequence_regions(sequence, probability)
+        return graphJSON, regions
     
 @app.route('/about')
 def about():
