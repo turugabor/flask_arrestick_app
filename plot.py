@@ -41,7 +41,7 @@ class Plotter:
         data["region"] = ""
         
         for i, row in data.iterrows():
-            data.loc[i, "region"] = f"{i+1}-{i+16} {seq[i:i+15]}"
+            data.loc[i, "region"] = f"{i+1}-{i+15} {seq[i:i+15]}"
         
         data['alphafold'] = [1 if conf > 70 else 0 for conf in confidence]
         data["structure"] = ['>70' if conf > 70 else '≤70' for conf in confidence]
@@ -77,7 +77,7 @@ class Plotter:
             y=[0, 1],
             colorscale=["#ef8354", "#2d3142"],
             customdata=np.concatenate([data.structure.values.reshape(1, -1)] * heatmap_range.shape[0]),
-            hovertemplate='Alphafold confidence: %{customdata}',
+            hovertemplate='AlphaFold confidence: %{customdata}',
             name="",
             showscale=False,
             opacity=0.6
@@ -101,7 +101,7 @@ class Plotter:
         
         subfig.add_annotation(
             x=25, y=1.08, xanchor="left",
-            text="Alphafold confidence ≤ 70",
+            text="AlphaFold confidence ≤ 70",
             showarrow=False
         )
         
@@ -113,7 +113,7 @@ class Plotter:
         
         subfig.add_annotation(
             x=25, y=1.15, xanchor="left",
-            text="Alphafold confidence > 70",
+            text="AlphaFold confidence > 70",
             showarrow=False
         )
         

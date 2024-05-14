@@ -14,3 +14,7 @@ html, body {
     margin-right: auto;
     width: auto;
 }
+
+a {
+    color: yellow;
+}

@@ -53,7 +53,7 @@ class Convolution:
         regions = []
         for i in range(len(probability)):
             if probability[i] > 0.5:
-                regions.append([i+1, i+16, sequence[i:i+15], probability[i]])
+                regions.append([i+1, i+15, sequence[i:i+15], probability[i]])
         regions = pd.DataFrame(regions, columns=["start", "end", "sequence", "prediction"])
         regions = regions.sort_values(by="prediction", ascending=False)
         regions = regions.round({"prediction": 2})
